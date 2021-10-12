@@ -3,10 +3,20 @@ import ReactDOM from "react-dom";
 
 const App = (props) => {
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(Array(6).fill(0));
 
   const handleSetAnecdote = () => {
-    const random = Math.floor(Math.random() * (6 - 0)) + 0;
+    let random;
+    do {
+      random = Math.floor(Math.random() * (6 - 0)) + 0;
+    } while (random === selected);
     setSelected(random);
+  };
+
+  const handleSetVote = () => {
+    const newVotes = [...votes];
+    newVotes[selected] += 1;
+    setVotes(newVotes);
   };
 
   return (
@@ -14,6 +24,8 @@ const App = (props) => {
       <p>
         <cite>{props.anecdotes[selected]}</cite>
       </p>
+      <p>has {votes[selected]} votes</p>
+      <button onClick={handleSetVote}>vote</button>
       <button onClick={handleSetAnecdote}>next anecdote</button>
     </div>
   );
