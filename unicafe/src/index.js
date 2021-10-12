@@ -3,6 +3,15 @@ import ReactDOM from "react-dom";
 
 const Button = ({ text, onClick }) => <button onClick={onClick}>{text}</button>;
 
+const Static = ({ text, value }) => {
+  return (
+    <tr>
+      <th>{text}</th>
+      <th>{value}</th>
+    </tr>
+  );
+};
+
 const Statics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
 
@@ -12,34 +21,12 @@ const Statics = ({ good, neutral, bad }) => {
 
   return (
     <table>
-      <tr>
-        <th>Statistical</th>
-        <th>Value</th>
-      </tr>
-      <tr>
-        <td>good</td>
-        <td>{good}</td>
-      </tr>
-      <tr>
-        <td>neutral</td>
-        <td>{neutral}</td>
-      </tr>
-      <tr>
-        <td>bad</td>
-        <td>{bad}</td>
-      </tr>
-      <tr>
-        <td>all</td>
-        <td>{all}</td>
-      </tr>
-      <tr>
-        <td>average</td>
-        <td>{((good - bad) / all) * 100}%</td>
-      </tr>
-      <tr>
-        <td>positive</td>
-        <td>{(good / all) * 100}%</td>
-      </tr>
+      <Static text="good" value={good} />
+      <Static text="neutral" value={neutral} />
+      <Static text="bad" value={bad} />
+      <Static text="all" value={all} />
+      <Static text="average" value={((good - bad) / all) * 100 + "%"} />
+      <Static text="average" value={(good / all) * 100 + "%"} />
     </table>
   );
 };
