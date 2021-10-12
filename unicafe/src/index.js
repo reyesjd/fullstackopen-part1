@@ -6,9 +6,9 @@ const Button = ({ text, onClick }) => <button onClick={onClick}>{text}</button>;
 const Statics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
 
-  /*if (all === 0) {
+  if (all === 0) {
     return <p>Click on any of these buttons to give your feedback</p>;
-  }*/
+  }
 
   return (
     <table>
